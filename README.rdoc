@@ -1,0 +1,9 @@
+== Summary
+
+This is an airline reservation system. Visitors can search for flights by origin airport, destination airport, and date/time of flight. A flight also has seats, which are organized into some kind of grid. After finding flights, a visitor can view the seat map and purchase a particular seat.
+
+The visitor does not need to sign up for an account to do this. But she can if she wants. If she does sign up for an account, she will be able to view a list of her flights in her profile
+
+== Setup
+
+  create an .env file and do what you already know how to do.
