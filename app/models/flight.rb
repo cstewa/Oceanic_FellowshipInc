@@ -4,6 +4,6 @@ class Flight < ActiveRecord::Base
   belongs_to :origin_airport, :class_name => 'Airport'
   belongs_to :destination_airport, :class_name => 'Airport'
 
-  validates_presence_of :destination_airport_id, :origin_airport_id
+  validates_presence_of :destination_airport_id, :origin_airport_id, :departure_time
 
 end
