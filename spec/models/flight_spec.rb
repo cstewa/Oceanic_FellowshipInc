@@ -38,4 +38,6 @@ describe Flight do
 
     expect(airport1.arriving_flights).to include(flight)
   end
+
+
 end
