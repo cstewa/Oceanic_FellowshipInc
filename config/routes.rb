@@ -1,4 +1,6 @@
 Oceanic::Application.routes.draw do
+  get "flights/show"
+
   get "airports/index"
 
   # The priority is based upon order of creation:

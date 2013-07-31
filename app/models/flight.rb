@@ -8,4 +8,14 @@ class Flight < ActiveRecord::Base
 
   validates_presence_of :destination_airport_id, :origin_airport_id, :departure_time
 
+  def seating_chart
+    row_array = Flight.where(:id => self.id).joins(:seats).select("distinct seats.row_number").map {|s| s.row_number.to_i}.sort
+    row_hash = {}
+    row_array.each do |number|
+      row_hash[number] = []
+      Seat.where(:flight_id => 1, :row_number=> number).each do |seat|
+        row_hash[number] << seat
+    end
+  end
+
 end
