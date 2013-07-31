@@ -1,8 +1,10 @@
 Oceanic::Application.routes.draw do
-
-  resources :flights
+<<<<<<< HEAD
+  get "flights/show"
 
   get "airports/index"
+=======
+>>>>>>> f17a37c35024ea9c37d400b8ebb245b34d95d42a
 
   post "selected_flight" => 'airports#selected_flight'
   get "/departing_flights/:id" => 'airports#departing_flights'

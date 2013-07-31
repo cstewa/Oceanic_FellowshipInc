@@ -2,17 +2,25 @@
 
 <div id= "all_seats">
 
-  <% @flight.seats.sort.each do |seat| %>
-    <% if seat.user_id == nil %>
-        <div class = "available" id = "<%= seat.row_number %><%= seat.seat_letter %>">
-          <%= seat.seat_letter %>
-        </div>
-    <% else %>
-      <div class = "unavailable" id = "<%= seat.row_number %><%= seat.seat_letter %>">
-        <%= seat.seat_letter %>
-      </div>
-    <% end %>
+  <% @seating_chart.each do |row, seats| %>
+
+    <div id= "seating-chart">
+      <%= row %>
+      <% seats.sort.each do |seat| %>
+        <% if seat.user_id == nil %>
+          <div class = "available" id = "<%= seat.row_number %><%= seat.seat_letter %>">
+              <%= seat.seat_letter %>
+          </div>
+        <% else %>
+          <div class = "unavailable" id = "<%= seat.row_number %><%= seat.seat_letter %>">
+            <%= row %>
+              <%= seat.seat_letter %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
 
   <% end %>
 
 </div>
+

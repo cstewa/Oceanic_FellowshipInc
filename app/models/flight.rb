@@ -15,7 +15,9 @@ class Flight < ActiveRecord::Base
       row_hash[number] = []
       Seat.where(:flight_id => 1, :row_number=> number).each do |seat|
         row_hash[number] << seat
+      end
     end
+    row_hash
   end
 
 end

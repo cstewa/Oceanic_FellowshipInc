@@ -1,0 +1,3 @@
+<%= select_tag(:airport_id, options_from_collection_for_select(@departing_airports, :id, :name), :id => 'departing_flights_pulldown') %>
+
+<%= button_tag 'Submit Destination Airport', :class => 'button', :id => 'departing_flights_button' %>
