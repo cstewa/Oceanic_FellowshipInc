@@ -1,0 +1,9 @@
+<h1>Multi-Trip</h1>
+
+<div id="departing_flight">
+  <h3 id='<%= @origin_airport.id %>'>You are departing from: <%= @origin_airport.name %></h3>
+</div>
+<div id="selection_window">
+  <%= render '/airports/departing' %>
+</div>
+<div id="selection_window2"></div>
