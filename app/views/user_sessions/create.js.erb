@@ -1,5 +1,8 @@
-var nav = $('nav.top-bar');
-
 $('#login_window').foundation('reveal', 'close');
 
-nav.empty().append("<%= j render 'layouts/nav' %>");
+<% if @user.nil? %>
+  $('#errors').append("<p>Not valid login/pass</p>")
+<% else %>
+  var nav = $('nav.top-bar');
+  nav.empty().append("<%= j render 'layouts/nav' %>");
+<% end %>

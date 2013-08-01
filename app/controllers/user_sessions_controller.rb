@@ -12,15 +12,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    respond_to do |format|
-      if @user = login(params[:email],params[:password])
-        format.html { redirect_back_or_to(:users, :notice => 'Login successful.') }
-        format.js
-      else
-        format.html { flash.now[:alert] = "Login failed."; render :action => "new" }
-        format.js
-      end
-    end
+    @user = login(params[:email],params[:password])
   end
 
   def destroy
