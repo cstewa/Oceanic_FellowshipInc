@@ -48,10 +48,15 @@
           </div>
         <% end %>
 
+<<<<<<< HEAD
+    <div class="row" >
+      <div class="large-12 columns" >
+=======
 
     <div class="row">
       <div class="large-12 columns">
         <div id="errors"></div>
+>>>>>>> 9107401e6d5d95292c44730f2cf38672a949ad0f
         <%= yield %>
       </div>
     </div>

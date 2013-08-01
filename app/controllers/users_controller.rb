@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :not_admin, :only => [:admin]
+
   before_filter :require_login, :only => [:show]
 
   def index
@@ -44,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def admin
-    before_filter :is_admin
+    @planes = Plane.all
   end
 
   def update

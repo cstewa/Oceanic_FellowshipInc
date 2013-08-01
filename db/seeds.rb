@@ -8,14 +8,14 @@
 
 # Create airports
 airports = Airport.create([
-  {name: "SFO", city: "San Francisco"},
-  {name: "Denver International", city: "Denver"},
-  {name: "JFK", city: "NYC"},
-  {name: "LAX", city: "Los Angeles"},
-  {name: "La Guardia", city: "NYC"},
-  {name: "San Jose International", city: "San Jose"},
-  {name: "Santa Barbara", city: "Santa Barbara"},
-  {name: "Philadelphia International", city: "Philadelphia"}
+  {name: "SFO", city: "San Francisco", latitude: 37.61, longitude: -122.39},
+  {name: "Denver International", city: "Denver", latitude: 39.84, longitude: -104.6},
+  {name: "JFK", city: "NYC", latitude: 40.6, longitude: -73.7},
+  {name: "LAX", city: "Los Angeles", latitude: 33.9, longitude: -118.4},
+  {name: "La Guardia", city: "NYC", latitude: 40.77, longitude: -73.87},
+  {name: "San Jose International", city: "San Jose", latitude: 37.36, longitude: -121.9},
+  {name: "Santa Barbara", city: "Santa Barbara", latitude: 34.42, longitude: -119.83},
+  {name: "Philadelphia International", city: "Philadelphia", latitude: 39.87, longitude: -75.24}
 ])
 airports.each { |a| puts a.inspect }
 

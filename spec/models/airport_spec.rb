@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Airport do
   it "gets created" do
     airport = Airport.create(:name => "SFO", :city => "San Francisco")
+    airport = Airport.create(:name => "LAX", :city => "Los Angeles)
+
 
     expect(Airport.all).to include(airport)
   end

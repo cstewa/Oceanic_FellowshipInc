@@ -1,0 +1,18 @@
+<h1><%= @plane.number %></h1>
+
+<!-- this assumes that each plane has a circular route. thus, it will never have a destination city that is not also an origin city at some point. -->
+<div id = "all-flights">
+  <% @plane.flights.each do |flight| %>
+    <div class = "flight-info">
+      <div class = "airport-name" data = "<%= flight.origin_airport.name %>" ></div>
+      <div class = "airport-city" data = "<%= flight.origin_airport.city %>" ></div>
+      <div class = "latitude" data = "<%= flight.origin_airport.latitude %>" ></div>
+      <div class = "longitude" data = "<%= flight.origin_airport.longitude %>" ></div>
+    </div>
+  <% end %>
+</div>
+
+<div id="map" style="width:500px; height:500px">
+</div>
+
+
