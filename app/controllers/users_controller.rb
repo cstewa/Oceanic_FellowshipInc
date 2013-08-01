@@ -34,18 +34,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.create(params[:user])
+  end
 
-    respond_to do |format|
-      if @user.save
-        auto_login(@user)
-        format.html { redirect_to(:users, :notice => 'Your account was successfully created.') }
-        format.js
-      else
-        format.html { render action: "new" }
-        format.js
-      end
-    end
+  def admin
+    before_filter :is_admin
   end
 
   def update
