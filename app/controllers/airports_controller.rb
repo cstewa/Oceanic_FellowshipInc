@@ -20,16 +20,16 @@ class AirportsController < ApplicationController
     @destination_airport = Airport.find(params[:destination_airport_id])
     @origin_airport = Airport.find(params[:origin_airport_id])
     @flight_times = Flight.where("destination_airport_id = ? AND origin_airport_id = ?", @destination_airport.id, @origin_airport.id )
+    respond_to do |format|
+      format.html # destination_airport.html.erb
+      format.js
+    end
+
   end
 
   def selected_flight # Step 4  Redirect to seats chart
     @flight = Flight.find(params[:flight_id])
     redirect_to flight_path(@flight)
-  end
-
-  def multi_trip
-    @origin_airport = Airport.find(params[:id])
-    @flight_times = Flight.where("destination_airport_id = ? AND origin_airport_id = ?", @destination_airport.id, @origin_airport.id )
   end
 
 end

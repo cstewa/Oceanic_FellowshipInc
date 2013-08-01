@@ -1,5 +1,7 @@
 <h1>Multi-Trip</h1>
-
+<% if current_user %>
+  <div><%= render '/airports/itinerary' %></div>
+<% end %>
 <div id="departing_flight">
   <h3 id='<%= @origin_airport.id %>'>You are departing from: <%= @origin_airport.name %></h3>
 </div>
