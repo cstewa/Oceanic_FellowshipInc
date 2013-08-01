@@ -1,0 +1,2 @@
+$("#selection_window").empty().append "<%= j render '/airports/departing' %>"
+$("#departing_flight").append "<h3 id='<%= @origin_airport.id %>'>You are departing from: <%= @origin_airport.name %></h3>"
