@@ -1,5 +1,14 @@
-var nav = $('nav.top-bar');
-
 $('#signup_window').foundation('reveal', 'close');
 
-nav.empty().append("<%= j render 'layouts/nav' %>");
+// if there are NOT errors:
+<% if @user.valid? %>
+
+  var nav = $('nav.top-bar');
+  nav.empty().append("<%= j render 'layouts/nav' %>");
+
+// If there are errors:
+<% else %>
+
+  $('#errors').empty().append("<%= j render :partial => 'layouts/form_errors', :locals => {:errors => @user.errors.full_messages} %>");
+
+<% end %>
