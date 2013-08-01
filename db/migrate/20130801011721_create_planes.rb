@@ -1,7 +1,7 @@
 class CreatePlanes < ActiveRecord::Migration
   def change
     create_table :planes do |t|
-      t.float :number
+      t.integer :number
 
       t.timestamps
     end
