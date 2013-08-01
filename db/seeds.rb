@@ -78,7 +78,8 @@ end
     :origin_airport_id => flight.destination_airport_id,
     :destination_airport_id => @airports_ids.sample,
     :plane_id => flight.plane_id,
-    :departure_time => flight.departure_time + (flight.duration).hours + 3.hours
+    :departure_time => flight.departure_time + flight.duration.hours + 3.hours,
+    :duration => (1..12).to_a.sample
   )
   @second_round << Flight.last
   puts Flight.last.inspect
@@ -97,24 +98,25 @@ end
    :origin_airport_id => flight.destination_airport_id,
    :destination_airport_id => @airports_ids.sample,
    :plane_id => flight.plane_id,
-   :departure_time => flight.departure_time + (flight.duration).hours + 3.hours
+   :departure_time => flight.departure_time + flight.duration.hours + 3.hours,
+   :duration => (1..12).to_a.sample
  )
  @third_round << Flight.last
  puts Flight.last.inspect
 end
 
 # Create seats
-# rows = (1..15).to_a
-# letters = ["A", "B", "C", "D", "E", "F"]
+rows = (1..15).to_a
+letters = ["A", "B", "C", "D", "E", "F"]
 
-# Flight.all.each do |flight|
-#   rows.each do |row|
-#     letters.each do |letter|
-#       flight.seats.create(
-#         :row_number => row,
-#         :seat_letter => letter
-#       )
-#       puts Seat.last.inspect
-#     end
-#   end
-# end
+Flight.all.each do |flight|
+  rows.each do |row|
+    letters.each do |letter|
+      flight.seats.create(
+        :row_number => row,
+        :seat_letter => letter
+      )
+      puts Seat.last.inspect
+    end
+  end
+end
