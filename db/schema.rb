@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130731000531) do
+ActiveRecord::Schema.define(:version => 20130801011721) do
 
   create_table "airports", :force => true do |t|
     t.string   "name"
@@ -24,8 +24,30 @@ ActiveRecord::Schema.define(:version => 20130731000531) do
     t.datetime "departure_time"
     t.integer  "origin_airport_id"
     t.integer  "destination_airport_id"
+    t.integer  "plane_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+  end
+
+  create_table "flights_itineraries", :force => true do |t|
+    t.integer "flight_id"
+    t.integer "itinerary_id"
+  end
+
+  create_table "itineraries", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "roundtrip"
+    t.boolean  "multi_city"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "itineraries", ["user_id"], :name => "index_itineraries_on_user_id"
+
+  create_table "planes", :force => true do |t|
+    t.float    "number"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "seats", :force => true do |t|
@@ -33,8 +55,9 @@ ActiveRecord::Schema.define(:version => 20130731000531) do
     t.integer  "row_number"
     t.string   "seat_letter"
     t.integer  "flight_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "itinerary_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "seats", ["flight_id"], :name => "index_seats_on_flight_id"

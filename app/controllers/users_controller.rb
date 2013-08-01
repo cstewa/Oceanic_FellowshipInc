@@ -48,6 +48,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def admin
+    before_filter :is_admin
+  end
+
   def update
     @user = User.find(session[:user_id])
 
