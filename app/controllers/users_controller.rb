@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(session[:user_id])
-    # @itineraries = current_user.itineraries
+    @itineraries = current_user.itineraries
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,8 +36,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    #
     @user = User.create(params[:user])
+    UserMailer.purchase_confirmation(current_user).deliver
 
   end
 

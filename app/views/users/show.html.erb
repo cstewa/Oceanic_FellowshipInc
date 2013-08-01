@@ -15,12 +15,23 @@
         <th></th>
       </tr>
 
-    <%# @itineries.each do |itinery| %>
+    <% @itineraries.each do |itinerary| %>
       <tr>
-       <td><%#= itinery.name %></td>
+       <td><%= itinerary.id %></td>
+       <% itinerary.flights.each do |flight| %>
+         <tr>
+          <td><%= flight.origin_airport.name %></td>
+          <td><%= flight.destination_airport.name %></td>
+          <td><% current_user.seats.where(:flight_id => flight.id).each do |seat| %></td>
+            <tr>
+              <td><%= seat.row_number %><%= seat.seat_letter %></td>
+            </tr>
+            <% end %>
+          </tr>
+          <% end %>
        <td></td>
        <td></td>
       </tr>
-    <%# end %>
+    <% end %>
     </table>
   </div>
