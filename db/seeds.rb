@@ -35,7 +35,8 @@ airports.each do |airport|
       airport.departing_flights.create(
         :destination_airport_id => id,
         :plane_id => @planes.shift.id,
-        :departure_time => rand(1.day).from_now
+        :departure_time => rand(1.day).from_now,
+        :duration => (1..12).to_a.sample
       )
       @first_round << Flight.last
       puts Flight.last.inspect
@@ -77,7 +78,7 @@ end
     :origin_airport_id => flight.destination_airport_id,
     :destination_airport_id => @airports_ids.sample,
     :plane_id => flight.plane_id,
-    :departure_time => flight.departure_time + 3.hours
+    :departure_time => flight.departure_time + (flight.duration).hours + 3.hours
   )
   @second_round << Flight.last
   puts Flight.last.inspect
@@ -96,7 +97,7 @@ end
    :origin_airport_id => flight.destination_airport_id,
    :destination_airport_id => @airports_ids.sample,
    :plane_id => flight.plane_id,
-   :departure_time => flight.departure_time + 3.hours
+   :departure_time => flight.departure_time + (flight.duration).hours + 3.hours
  )
  @third_round << Flight.last
  puts Flight.last.inspect
