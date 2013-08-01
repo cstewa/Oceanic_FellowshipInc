@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20130801182038) do
   add_index "itineraries", ["user_id"], :name => "index_itineraries_on_user_id"
 
   create_table "planes", :force => true do |t|
-    t.integer  "number"
+    t.float    "number"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
