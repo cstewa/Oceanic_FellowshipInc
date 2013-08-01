@@ -1,5 +1,5 @@
 class Flight < ActiveRecord::Base
-  attr_accessible :departure_time, :destination_airport_id, :origin_airport_id
+  attr_accessible :departure_time, :destination_airport_id, :origin_airport_id, :plane_id
 
   belongs_to :origin_airport, :class_name => 'Airport'
   belongs_to :destination_airport, :class_name => 'Airport'
