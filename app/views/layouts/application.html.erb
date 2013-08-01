@@ -15,9 +15,14 @@
 
   	<title><%= content_for?(:title) ? yield(:title) : "Oceanic FellowshipInc" %></title>
 
+    <script src='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
+    <link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+    <link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
+
+
   </head>
 
   <body>
@@ -43,12 +48,12 @@
           </div>
         <% end %>
 
-    <div class="row">
-      <div class="large-12 columns">
+    <div class="row" >
+      <div class="large-12 columns" >
         <%= yield %>
       </div>
     </div>
-
+    <%= content_for :scripts %>
     <%= javascript_include_tag "application" %>
   </body>
 </html>
