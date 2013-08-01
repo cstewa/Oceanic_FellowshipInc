@@ -5,6 +5,7 @@ class CreateSeats < ActiveRecord::Migration
       t.integer :row_number
       t.string :seat_letter
       t.references :flight
+      t.string :itinerary_id
 
       t.timestamps
     end
