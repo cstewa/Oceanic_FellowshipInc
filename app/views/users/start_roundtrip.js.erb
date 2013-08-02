@@ -1,0 +1,17 @@
+var user_seats = [];
+
+$('.reserved').each(function() {
+  user_seats.push($(this).attr('id'));
+});
+
+$.ajax({
+  url: "<%= save_roundtrip_path %>",
+  method: "POST",
+  data: "seats=" + user_seats + "&flight=" + <%= @flight %>,
+  success: function() {
+    window.location.href = "<%= go_roundtrip_path(Flight.find(@flight).destination_airport.id, Flight.find(@flight).origin_airport.id) %>"
+  }
+})
+
+
+// Flight.find(1).destination_airport.id, Flight.find(2).origin_airport.id)
