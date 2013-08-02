@@ -38,15 +38,38 @@ class UsersController < ApplicationController
   def create
     #
     @user = User.create(params[:user])
-     binding.pry
-  end
-
-  def admin
-    before_filter :is_admin
   end
 
   def admin
     @planes = Plane.all
+  end
+
+
+  def purchase
+    @flight = params[:flight_id]
+  end
+
+  def start_roundtrip
+
+  end
+
+  def save_purchase
+    flight = params[:flight]
+    @seats = params[:seats].split(",")
+    seats_array = []
+    @seats.each do |seat|
+      letter = seat[0]
+      number = seat[1..-1]
+      seats_array << Seat.where(:flight_id => flight, :row_number => number, :seat_letter => letter).first
+    end
+    confirmation_number = (0...8).map{(65+rand(26)).chr}.join
+    seats_array.each do |seat|
+      seat.update_attribute(:confirm_number, confirmation_number)
+    end
+    current_user.seats << seats_array
+    @itinerary = Itinerary.create(:user_id => current_user.id)
+    @itinerary.flights << Flight.find(flight)
+    redirect_to user_path(current_user.id)
   end
 
   def update

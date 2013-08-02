@@ -5,22 +5,30 @@
   <%= @user.email %>
 </p>
 
-<div class="row">
-  <div class="large-12 large-centered columns">
-    <table>
-      <tr>
-        <th>Itinerary</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
 
-    <%# @itineries.each do |itinery| %>
-      <tr>
-       <td><%#= itinery.name %></td>
-       <td></td>
-       <td></td>
-      </tr>
-    <%# end %>
-    </table>
+<% current_user.itineraries.each do |itinerary| %>
+Itinerary <%= itinerary.id %>
+  <div class="row">
+    <div class="large-12 large-centered columns">
+      <table>
+        <tr>
+          <th>Departure Time</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Plane</th>
+          <th>Duration</th>
+        </tr>
+
+      <% itinerary.flights.each do |flight| %>
+        <tr>
+         <td><%= flight.departure_time.strftime('%B %e, %Y at %l:%M %p') %></td>
+         <td><%= flight.origin_airport.name %> | <%= flight.origin_airport.city %></td>
+         <td><%= flight.destination_airport.name %> | <%= flight.destination_airport.city %> </td>
+         <td> <%= flight.plane.number %></td>
+         <td> <%= flight.duration %> </td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
   </div>
+<% end %>

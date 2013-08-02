@@ -1,0 +1,15 @@
+var user_seats = [];
+
+$('.reserved').each(function() {
+  user_seats.push($(this).attr('id'));
+});
+
+$.ajax({
+  url: "<%= save_purchase_path %>",
+  method: "POST",
+  data: "seats=" + user_seats + "&flight=" + <%= @flight %>,
+  success: function() {
+    window.location.href = "<%= user_path(current_user) %>"
+  }
+})
+
