@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "eric.c.mooney@gmail.com"
+  default from: "littleredrubyridinghood@gmail.com"
 
   def purchase_confirmation(user)
     @user = user
