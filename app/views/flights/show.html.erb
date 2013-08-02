@@ -8,7 +8,7 @@
       <%= row %>
       <% seats.sort.each do |seat| %>
         <% if seat.user_id == nil %>
-          <div class = "available" id = "<%= seat.row_number %><%= seat.seat_letter %>">
+          <div class = "available" id = "<%= seat.seat_letter %><%= seat.row_number %>">
               <%= seat.seat_letter %>
           </div>
         <% else %>
@@ -23,4 +23,16 @@
   <% end %>
 
 </div>
+
+
+
+<% if current_user %>
+  <%= link_to "Purchase", purchase_path(@flight.id), :remote => true %>
+  <%= link_to "Round Trip", start_roundtrip_path(@flight.id), :remote => true %>
+  <%= link_to "Multi City", start_multicity_path(@flight.id), :remote => true %>
+<% end %>
+
+<!-- get "/departing_flights/:id" => 'airports#departing_flights', :as => 'multi_trip'
+  get "/destination_airport/:origin_airport_id/:destination_airport_id" => 'airports#destination_airport', :as => 'round_trip' -->
+
 

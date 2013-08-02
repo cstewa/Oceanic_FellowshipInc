@@ -1,4 +1,4 @@
-<h1><%= @plane.number %></h1>
+<h1>Plane Number: </br><%= @plane.number %></h1>
 
 <!-- this assumes that each plane has a circular route. thus, it will never have a destination city that is not also an origin city at some point. -->
 <div id = "all-flights">
@@ -8,6 +8,7 @@
       <div class = "airport-city" data = "<%= flight.origin_airport.city %>" ></div>
       <div class = "latitude" data = "<%= flight.origin_airport.latitude %>" ></div>
       <div class = "longitude" data = "<%= flight.origin_airport.longitude %>" ></div>
+      <div class = "time" data = "<%= flight.departure_time.strftime('%B %e, %Y at %l:%M %p') %>" ></div>
     </div>
   <% end %>
 </div>

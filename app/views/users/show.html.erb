@@ -6,36 +6,34 @@
 </p>
 
 
-<% form_tag "/confirm_number/" %>
+<% current_user.itineraries.each do |itinerary| %>
+Itinerary <%= itinerary.id %>
+  <div class="row">
+    <div class="large-12 large-centered columns">
+      <table>
+        <tr>
+          <th>Departure Time</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Plane</th>
+          <th>Duration</th>
+        </tr>
 
-<div class="row">
-  <div class="large-12 large-centered columns">
-    <table>
-      <tr>
-        <th>Itinerary</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-
-    <% @itineraries.each do |itinerary| %>
-      <tr>
-       <td><%= itinerary.id %></td>
-       <% itinerary.flights.each do |flight| %>
-         <tr>
-          <td><%= flight.origin_airport.name %></td>
-          <td><%= flight.destination_airport.name %></td>
-          <td><% current_user.seats.where(:flight_id => flight.id).each do |seat| %></td>
-            <tr>
-              <td><%= seat.row_number %><%= seat.seat_letter %></td>
-              <td><%= seat.confirm_number %></td>
-            </tr>
-            <% end %>
-          </tr>
+      <% itinerary.flights.each do |flight| %>
+        <tr>
+         <td><%= flight.departure_time.strftime('%B %e, %Y at %l:%M %p') %></td>
+         <td><%= flight.origin_airport.name %> | <%= flight.origin_airport.city %></td>
+         <td><%= flight.destination_airport.name %> | <%= flight.destination_airport.city %> </td>
+         <td> <%= flight.plane.number %></td>
+         <td> <%= flight.duration %> </td>
+         <td> <% flight.seats.where(:user_id => current_user.id).each do |seat| %>
+          <%= seat.seat_letter %><%= seat.row_number %> | <%= seat.confirm_number %>
+          <br>
           <% end %>
-       <td></td>
-       <td></td>
-      </tr>
-    <% end %>
-    </table>
+        </td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
   </div>
+<% end %>
