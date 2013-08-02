@@ -1,0 +1,8 @@
+<h5>Seats you've reserved:</h5>
+
+<% current_user.seats.where(:itinerary_id == nil).each do |seat| %>
+  <p>
+    From: <%= Flight.find(seat.flight_id).origin_airport.name %>
+    To: <%= Flight.find(seat.flight_id).destination_airport.name %>
+    Seat: <%= seat.row_number %><%= seat.seat_letter %></p>
+<% end %>

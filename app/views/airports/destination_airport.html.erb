@@ -1,0 +1,13 @@
+<h1>Round-Trip</h1>
+
+<% if current_user %>
+  <div><%= render '/airports/itinerary' %></div>
+<% end %>
+<div id="departing_flight">
+  <h3 id='<%= @origin_airport.id %>'>You are departing from: <%= @origin_airport.name %>
+    <h4 id='<%= @destination_airport.id %>'>You are arriving in: <%= @destination_airport.name %></h4>
+  </h3>
+</div>
+<div id="selection_window">
+</div>
+<div id="selection_window2"><%= render '/airports/flights' %></div>

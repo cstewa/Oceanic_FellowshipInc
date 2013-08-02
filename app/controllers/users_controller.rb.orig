@@ -37,7 +37,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(params[:user])
+<<<<<<< HEAD
+=======
+    UserMailer.purchase_confirmation(current_user).deliver
 
+>>>>>>> 18d189c0cf9fe65f98eca63219fb49cf6d844f8e
   end
 
   def admin
@@ -69,8 +73,7 @@ class UsersController < ApplicationController
     current_user.seats << seats_array
     @itinerary = Itinerary.create(:user_id => current_user.id)
     @itinerary.flights << Flight.find(flight)
-    UserMailer.purchase_confirmation(current_user).deliver
-    redirect_to user_path(current_user)
+    redirect_to user_path(current_user.id)
   end
 
   def update

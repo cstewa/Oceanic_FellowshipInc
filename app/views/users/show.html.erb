@@ -26,6 +26,11 @@ Itinerary <%= itinerary.id %>
          <td><%= flight.destination_airport.name %> | <%= flight.destination_airport.city %> </td>
          <td> <%= flight.plane.number %></td>
          <td> <%= flight.duration %> </td>
+         <td> <% flight.seats.where(:user_id => current_user.id).each do |seat| %>
+          <%= seat.seat_letter %><%= seat.row_number %> | <%= seat.confirm_number %>
+          <br>
+          <% end %>
+        </td>
         </tr>
       <% end %>
       </table>
