@@ -26,11 +26,12 @@
 
 
 
-<% if current_user %>
-  <%= link_to "Purchase", purchase_path(@flight.id), :remote => true %>
-  <%= link_to "Round Trip", start_roundtrip_path(@flight.id), :remote => true %>
-  <%= link_to "Multi City", start_multicity_path(@flight.id), :remote => true %>
-<% end %>
+<div id="purchase_seat_links">
+
+  <%= render partial: 'purchase_links' %>
+
+</div>
+
 
 <!-- get "/departing_flights/:id" => 'airports#departing_flights', :as => 'multi_trip'
   get "/destination_airport/:origin_airport_id/:destination_airport_id" => 'airports#destination_airport', :as => 'round_trip' -->

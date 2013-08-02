@@ -7,6 +7,8 @@
     <%= label_tag :password %><br />
     <%= password_field_tag :password %>
   </div>
+
+    <%= hidden_field_tag(:flight_id, @flight.id) if @flight.present? %>
   <div class="actions">
     <%= submit_tag "Login", :class => "button" %>
   </div>

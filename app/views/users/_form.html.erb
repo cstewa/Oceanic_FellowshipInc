@@ -23,6 +23,7 @@
      <%= f.label :password_confirmation %><br />
      <%= f.password_field :password_confirmation %>
   </div>
+  <%= hidden_field_tag(:flight_id, @flight.id) if @flight.present? %>
   <div class="actions">
     <%= f.submit "Save", :class => "button" %>
   </div>

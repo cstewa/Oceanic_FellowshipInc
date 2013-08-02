@@ -6,3 +6,9 @@ $('#login_window').foundation('reveal', 'close');
   var nav = $('nav.top-bar');
   nav.empty().append("<%= j render 'layouts/nav' %>");
 <% end %>
+
+<% if @flight.present? %>
+if ($('#purchase_seat_links').length > 0){
+  var purchase_links =  $('#purchase_seat_links');
+  purchase_links.empty().append("<%= j render partial: 'flights/purchase_links' %>")};
+<% end %>

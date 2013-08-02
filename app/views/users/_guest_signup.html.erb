@@ -1,0 +1,16 @@
+<p>Guest Signup</p>
+<%= form_for(@user, :remote => true) do |f| %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+
+     <%= f.hidden_field :password, :value => "foobar" %>
+     <%= f.hidden_field :password_confirmation, :value => "foobar" %>
+
+  <%= hidden_field_tag(:flight_id, @flight.id) if @flight.present? %>
+  <div class="actions">
+    <%= f.submit "Save", :class => "button" %>
+  </div>
+<% end %>

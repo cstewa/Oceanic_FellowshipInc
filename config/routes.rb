@@ -1,8 +1,13 @@
 Oceanic::Application.routes.draw do
   get "planes/show"
 
+  get "login/:flight_id" => 'user_sessions#new'
   match 'login' => 'user_sessions#new', :as => :login
+
+  get "/create_user/:flight_id" => 'users#new'
   match 'logout' => 'user_sessions#destroy', :as => :logout
+
+  get "/guest_user/:flight_id" => 'users#guest_signup'
 
   get 'purchase/:flight_id' => 'users#purchase', :as => :purchase
   post 'save_purchase' => 'users#save_purchase', :as => :save_purchase

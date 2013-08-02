@@ -24,12 +24,29 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    if !params[:flight_id].nil?
+      @flight = Flight.find(params[:flight_id])
+    end
 
     respond_to do |format|
       format.html # new.html.erb
       format.js
     end
   end
+
+
+  def guest_signup
+    @user = User.new
+    if !params[:flight_id].nil?
+      @flight = Flight.find(params[:flight_id])
+    end
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.js
+    end
+  end
+
 
   def edit
     @user = User.find(session[:user_id])
@@ -38,6 +55,9 @@ class UsersController < ApplicationController
   def create
     @user = User.create(params[:user])
     auto_login(@user)
+    if !params[:flight_id].nil?
+      @flight = Flight.find(params[:flight_id])
+    end
   end
 
   def admin
@@ -69,7 +89,7 @@ class UsersController < ApplicationController
     current_user.seats << seats_array
     @itinerary = Itinerary.create(:user_id => current_user.id)
     @itinerary.flights << Flight.find(flight)
-    UserMailer.purchase_confirmation(current_user).deliver
+    #UserMailer.purchase_confirmation(current_user).deliver
     redirect_to user_path(current_user)
   end
 
