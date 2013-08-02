@@ -1,11 +1,14 @@
-<h1>Search Flights</h1>
 
-<div id="departing_flight"></div>
-<div id="selection_window">
+    <h1>Search Flights</h1>
 
-  <%= select_tag(:flight_id, options_from_collection_for_select(@origin_airports, :id, :name), :id => "origin_airport_pulldown") %>
-  <%= button_tag "Submit Origin", :class => "button", :id => "origin_airport_button" %>
+    <div id="departing_flight"></div>
+    <div id="selection_window">
 
- <!-- = f.collection_select :venue_id, Venue.ordered, :id, :name -->
+      <%= select_tag(:flight_id, options_from_collection_for_select(@origin_airports, :id, :name), :id => "origin_airport_pulldown") %>
+      <%= button_tag "Submit Origin", :class => "button", :id => "origin_airport_button" %>
+
+     <!-- = f.collection_select :venue_id, Venue.ordered, :id, :name -->
+    </div>
+    <div id="selection_window2"></div>
+  </div>
 </div>
-<div id="selection_window2"></div>

@@ -36,9 +36,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    #
     @user = User.create(params[:user])
-
+    auto_login(@user)
   end
 
   def admin
