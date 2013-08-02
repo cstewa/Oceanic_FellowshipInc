@@ -49,10 +49,6 @@ class UsersController < ApplicationController
     @flight = params[:flight_id]
   end
 
-  def start_roundtrip
-
-  end
-
   def save_purchase
     flight = params[:flight]
     @seats = params[:seats].split(",")
@@ -68,9 +64,49 @@ class UsersController < ApplicationController
     end
     current_user.seats << seats_array
     @itinerary = Itinerary.create(:user_id => current_user.id)
-    @itinerary.flights << Flight.find(flight)
-    UserMailer.purchase_confirmation(current_user).deliver
+    flights_array = []
+    current_user.flights.each do |flight|
+      flight.itineraries.each do |itinerary|
+        if itinerary.id == current_user.id
+          flights_array << flight
+        end
+      end
+    end
+
+
+    if flights_array.empty?
+      @itinerary.flights << Flight.find(flight)
+    else
+      @itinerary.flights << flights_array
+    end
+    # Flight.where(:flight)
+    # UserMailer.purchase_confirmation(current_user).deliver
     redirect_to user_path(current_user)
+  end
+
+  def start_roundtrip
+    @flight = params[:flight_id]
+  end
+
+  def save_roundtrip
+    flight = params[:flight]
+    @seats = params[:seats].split(",")
+    seats_array = []
+    @seats.each do |seat|
+      letter = seat[0]
+      number = seat[1..-1]
+      seats_array << Seat.where(:flight_id => flight, :row_number => number, :seat_letter => letter).first
+    end
+    confirmation_number = (0...8).map{(65+rand(26)).chr}.join
+    seats_array.each do |seat|
+      seat.update_attribute(:confirm_number, confirmation_number)
+    end
+    current_user.seats << seats_array
+    @itinerary = Itinerary.create(:user_id => current_user.id)
+    @itinerary.flights << Flight.find(flight)
+    # redirect_to roundtrip_path(@seats.first.destination_airport.id, @seats.first.origin_airport.id)
+    redirect_to go_roundtrip_path(Flight.find(flight).destination_airport.id, Flight.find(flight).origin_airport.id)
+    # Flight.find(@flight).destination_airport.id, Flight.find(@flight).origin_airport.id
   end
 
   def update

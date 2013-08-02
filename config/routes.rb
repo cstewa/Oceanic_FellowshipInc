@@ -7,7 +7,11 @@ Oceanic::Application.routes.draw do
   get 'purchase/:flight_id' => 'users#purchase', :as => :purchase
   post 'save_purchase' => 'users#save_purchase', :as => :save_purchase
 
-  get 'start_roundtrip/:flight_id' => 'users#roundtrip', :as => :start_roundtrip
+  get 'start_roundtrip/:flight_id' => 'users#start_roundtrip', :as => :start_roundtrip
+  post 'save_roundtrip' => 'users#save_roundtrip', :as => :save_roundtrip
+  get 'go_roundtrip/:origin_airport_id/:destination_airport_id' => 'airports#destination_airport', :as => :go_roundtrip
+
+
   get 'start_multicity/:flight_id' =>  'users#multicity', :as  => :start_multicity
 
   get "airports/index"
